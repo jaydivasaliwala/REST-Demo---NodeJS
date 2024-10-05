@@ -8,7 +8,11 @@ const responseModel = (res,status_code, message, error_status, data) => {
             error_status:error_status
         })
     }
-    if(data == null)
+    if (
+        data === null ||  // Check if null
+        (Array.isArray(data) && data.length === 0) ||  // Check if blank array
+        (typeof data === 'object' && data !== null && Object.keys(data).length === 0 && data.constructor === Object)  // Check if blank object
+    )
     {
         res.status(200).json({
             status_code:204,
