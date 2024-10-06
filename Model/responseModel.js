@@ -21,13 +21,16 @@ const responseModel = (res,status_code, message, error_status, data) => {
             error_status:error_status
         })
     }
-    const result = {
-        status_code:status_code,
-        data:data,
-        message:message,
-        error_status:error_status
+    else
+    {
+        const result = {
+            status_code:status_code,
+            data:data,
+            message:message,
+            error_status:error_status
+        }
+        res.status(status_code).json(result)
     }
-    res.status(status_code).json(result)
 }
 
 module.exports = {responseModel}
