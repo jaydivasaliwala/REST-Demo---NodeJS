@@ -1,4 +1,4 @@
-const { UserGetAllData, UserGetData, UserDeleteData, UserAddData } = require("../Business/UserData")
+const { UserGetAllData, UserGetData, UserDeleteData, UserAddData, UserUpdateData } = require("../Business/UserData")
 const { responseModel } = require("../Model/ResponseModel")
 
 const GetAllUser = (req,res) => {
@@ -21,4 +21,9 @@ const AddUser = (req,res) => {
     responseModel(res,200,"Added.",false,result)
 }
 
-module.exports = {GetAllUser,GetUser,DeleteUser, AddUser}
+const UpdateUser = (req,res) => {
+    const result = UserUpdateData(req.body)
+    responseModel(res,200,"Updated",false,result)
+}
+
+module.exports = {GetAllUser,GetUser,DeleteUser, AddUser, UpdateUser}

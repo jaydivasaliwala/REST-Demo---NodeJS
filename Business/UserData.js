@@ -27,4 +27,12 @@ const UserAddData = (req_data) => {
     return true
 }
 
-module.exports = {UserGetAllData,UserGetData, UserDeleteData, UserAddData}
+const UserUpdateData = (req_body) => {
+    const data = JSON.parse(fs.readFileSync("Static/Data.json"))
+    const index = data.data.findIndex(i => i.id === req_body.id)
+    data.data[index] = req_body
+    fs.writeFileSync("Static/Data.json",JSON.stringify(data))
+    return true
+}
+
+module.exports = {UserGetAllData,UserGetData, UserDeleteData, UserAddData, UserUpdateData}
