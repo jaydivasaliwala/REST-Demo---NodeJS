@@ -20,7 +20,7 @@ const UserDeleteData = (id) => {
 const UserAddData = (req_data) => {
     const data = JSON.parse(fs.readFileSync("Static/Data.json"))
     const id_list = data.data.map(d => d.id)
-    const id = Math.max(...id_list)+1
+    const id = id_list.length === 0 ? 1 : Math.max(...id_list)+1
     const add_data = {id:id,...req_data}
     data.data.push(add_data)
     fs.writeFileSync("Static/Data.json",JSON.stringify(data))
